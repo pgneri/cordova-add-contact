@@ -1,15 +1,9 @@
 /********* cordova-add-contact.m Cordova Plugin Implementation *******/
 
 #import <Cordova/CDV.h>
+#import "cordova-add-contact.h"
 
-@interface cordova-add-contact : CDVPlugin {
-  // Member variables go here.
-}
-
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
-@end
-
-@implementation cordova-add-contact
+@implementation CordovaAddContact
 
 - (void)coolMethod:(CDVInvokedUrlCommand*)command
 {
@@ -17,12 +11,36 @@
     NSString* echo = [command.arguments objectAtIndex:0];
 
     if (echo != nil && [echo length] > 0) {
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:echo];
+
+        CNContact *contact = [[CNContact alloc] init];
+
+        _addContactVC = [CNContactViewController viewControllerForNewContact:contact];
+        _addContactVC.delegate = self;
+        _addContactVC.allowsEditing = YES;
+        _addContactVC.allowsActions = YES;
+
+        _navController = [[UINavigationController alloc] initWithRootViewController:_addContactVC];
+        _addContactVC.title = @"Novo Contato";
+
+        _backBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Voltar" style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
+        _addContactVC.navigationItem.backBarButtonItem = _backBarButton;
+
+        // Display the view
+        [self.viewController presentViewController:_navController animated:YES completion:^{}];
+
+        //pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:callbackId];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
+
+-(void) backAction:(id)sender {
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
 
 @end
