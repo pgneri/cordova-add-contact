@@ -12,6 +12,14 @@
     "ecosystem:cordova",
     "cordova-android"
   ],
-  "author": "",
-  "license": "Apache-2.0"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpfperondini/cordova-add-contact.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jpfperondini/cordova-add-contact/issues"
+  },
+  "homepage": "https://github.com/jpfperondini/cordova-add-contact#readme",
+  "author": ""
 }
