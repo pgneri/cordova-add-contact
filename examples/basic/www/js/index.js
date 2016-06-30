@@ -6,7 +6,11 @@ var app = {
         document.getElementById('button').addEventListener('click', this.buttonClicked, false);
     },
     buttonClicked: function() {
-        alert(123)
+        window.cordova.plugins.cordovaAddContact.coolMethod('123', function(msg) {
+            alert(msg)
+        }, function(msg) {
+            alert(msg)
+        })
     },
 };
 

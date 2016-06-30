@@ -1,0 +1,17 @@
+{
+  "name": "cordova-add-contact",
+  "version": "0.1.0",
+  "description": "Cordova Add Contact Plugin",
+  "cordova": {
+    "id": "cordova-add-contact",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "Apache-2.0"
+}
