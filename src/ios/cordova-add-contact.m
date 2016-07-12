@@ -5,7 +5,7 @@
 
 @implementation CordovaAddContact
 
-- (void)coolMethod:(CDVInvokedUrlCommand*)command
+- (void)addContact:(CDVInvokedUrlCommand*)command
 {
     CDVPluginResult* pluginResult = nil;
     NSString* echo = [command.arguments objectAtIndex:0];

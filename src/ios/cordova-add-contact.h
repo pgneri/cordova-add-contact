@@ -11,6 +11,6 @@
 @property (strong, nonatomic) UINavigationController *navController;
 @property (nonatomic, strong) UIBarButtonItem *backBarButton;
 
-- (void)coolMethod:(CDVInvokedUrlCommand*)command;
+- (void)addContact:(CDVInvokedUrlCommand*)command;
 
 @end
