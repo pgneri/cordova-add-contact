@@ -24,11 +24,13 @@
 
         _backBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Voltar" style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
         _addContactVC.navigationItem.backBarButtonItem = _backBarButton;
-
+        
         // Display the view
-        [self.viewController presentViewController:_navController animated:YES completion:^{}];
+        [self.viewController presentViewController:_navController animated:YES completion:^{
+            [self buttonLayout];
+        }];
 
-        //pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:callbackId];
+        //pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:command.callbackId];
     } else {
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
@@ -40,6 +42,13 @@
     [self.viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void) buttonLayout {
+    _navController.navigationItem.leftBarButtonItem = _backBarButton;
+}
+
+-(void)contactViewController:(CNContactViewController *)viewController didCompleteWithContact:(CNContact *)contact {
+    [self.viewController dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 
