@@ -2,17 +2,24 @@
 <plugin id="cordova-add-contact" version="0.1" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
     <name>cordova-add-contact</name>
     <js-module name="cordova-add-contact" src="www/cordovaAddContact.js">
-        <clobbers target="cordova.plugins.cordovaAddContact"/>
+      <clobbers target="cordova.plugins.cordovaAddContact"/>
     </js-module>
-
     <platform name="android">
         <config-file parent="/*" target="res/xml/config.xml">
-            <feature name="CordovaAddContact">
-                <param name="android-package" value="cordova.plugin.contact.add.CordovaAddContact"/>
-                <param name="onload" value="true"/>
-            </feature>
-        </config-file>
-        <config-file parent="/*" target="AndroidManifest.xml"></config-file>
+            <feature name="CordovaAddContact"><param name="android-package" value="cordova.plugin.contact.add.CordovaAddContact"/><param name="onload" value="true"/></feature>
+        </config-file><config-file parent="/*" target="AndroidManifest.xml"/>
         <source-file src="src/android/CordovaAddContact.java" target-dir="src/cordova/plugin/contact/add"/>
+    </platform>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="CordovaAddContact"><param name="ios-package" value="CordovaAddContact"/></feature>
+        </config-file>
+
+        <header-file src="src/ios/cordova-add-contact.h" />
+        <source-file src="src/ios/cordova-add-contact.m"/>
+
+        <framework src="Contacts.framework" />
+        <framework src="ContactsUI.framework" />
+        <framework src="CoreGraphics.framework" />
     </platform>
 </plugin>
