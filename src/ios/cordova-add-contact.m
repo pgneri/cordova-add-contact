@@ -20,15 +20,9 @@
         _addContactVC.allowsActions = YES;
 
         _navController = [[UINavigationController alloc] initWithRootViewController:_addContactVC];
-        _addContactVC.title = @"Novo Contato";
-
-        _backBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Voltar" style:UIBarButtonItemStylePlain target:self action:@selector(backAction:)];
-        _addContactVC.navigationItem.backBarButtonItem = _backBarButton;
         
         // Display the view
-        [self.viewController presentViewController:_navController animated:YES completion:^{
-            [self buttonLayout];
-        }];
+        [self.viewController presentViewController:_navController animated:YES completion:^{}];
 
         //pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:command.callbackId];
     } else {
@@ -36,14 +30,6 @@
     }
 
     [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
-}
-
--(void) backAction:(id)sender {
-    [self.viewController dismissViewControllerAnimated:YES completion:nil];
-}
-
--(void) buttonLayout {
-    _navController.navigationItem.leftBarButtonItem = _backBarButton;
 }
 
 -(void)contactViewController:(CNContactViewController *)viewController didCompleteWithContact:(CNContact *)contact {
