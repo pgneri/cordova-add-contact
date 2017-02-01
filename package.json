@@ -5,7 +5,8 @@
   "cordova": {
     "id": "cordova-add-contact",
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   },
   "keywords": [

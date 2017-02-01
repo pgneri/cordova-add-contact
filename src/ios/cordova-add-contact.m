@@ -7,17 +7,30 @@
 
 - (void)addContact:(CDVInvokedUrlCommand*)command
 {
-        CNContact *contact = [[CNContact alloc] init];
+    CNMutableContact *contact = [[CNMutableContact alloc] init];
 
-        _addContactVC = [CNContactViewController viewControllerForNewContact:contact];
-        _addContactVC.delegate = self;
-        _addContactVC.allowsEditing = YES;
-        _addContactVC.allowsActions = YES;
+    NSDictionary* options = command.arguments.count == 0 ? [NSNull null] : [command.arguments objectAtIndex:0];
 
-        _navController = [[UINavigationController alloc] initWithRootViewController:_addContactVC];
+    if ([options isKindOfClass:[NSNull class]]) {
+        options = [NSDictionary dictionary];
+    }
 
-        // Display the view
-        [self.viewController presentViewController:_navController animated:YES completion:^{}];
+    CNLabeledValue *homeEmail = [CNLabeledValue labeledValueWithLabel:CNLabelHome value:options[@"email"]];
+    CNLabeledValue *homePhone = [CNLabeledValue labeledValueWithLabel:CNLabelHome value:[CNPhoneNumber phoneNumberWithStringValue:options[@"phone"]]];
+
+    contact.givenName = options[@"name"];
+    contact.emailAddresses = @[homeEmail];
+    contact.phoneNumbers = @[homePhone];
+
+    _addContactVC = [CNContactViewController viewControllerForNewContact:contact];
+    _addContactVC.delegate = self;
+    _addContactVC.allowsEditing = YES;
+    _addContactVC.allowsActions = YES;
+
+    _navController = [[UINavigationController alloc] initWithRootViewController:_addContactVC];
+
+    // Display the view
+    [self.viewController presentViewController:_navController animated:YES completion:^{}];
 
 }
 
