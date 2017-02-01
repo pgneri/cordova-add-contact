@@ -1,6 +1,6 @@
 {
   "name": "cordova-add-contact",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Cordova Add Contact Plugin",
   "cordova": {
     "id": "cordova-add-contact",
@@ -23,5 +23,5 @@
     "url": "https://github.com/jpfperondini/cordova-add-contact/issues"
   },
   "homepage": "https://github.com/jpfperondini/cordova-add-contact#readme",
-  "author": ""
+  "author": "João Pedro Perondini <jpfperondini@gmail.com>"
 }
